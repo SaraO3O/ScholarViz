@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Homepage</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/graphology@0.25.1/dist/graphology.umd.min.js"></script>
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
+        <script>
+            const STATIC_ROOT = {{ request.script_root+'/static/'|tojson }}
+        </script>
+    </head>
+    <body>
+
+      <div class="container" id="little-menu">
+        <center><h1>Página Inicial</h1></center>
+          <ul>
+            <li><a href="#0">Sobre</a></li>
+            <li>
+              <a href="#0">Rede de Cooperação</a>
+              <ul>
+                <li><a href="#0">Betweenness</a></li>
+                <li><a href="#0">Closeness</a></li>
+                <li><a href="#0">Degree</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#0">Rede de citação</a>
+              <ul>
+                <li><a href="#0">Betweenness</a></li>
+                <li><a href="#0">Closeness</a></li>
+                <li><a href="#0">Degree</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#0">Rede de filiação</a>
+              <ul>
+                <li><a href="#0">Betweenness</a></li>
+                <li><a href="#0">Closeness</a></li>
+                <li><a href="#0">Degree</a></li>
+              </ul>
+            </li>
+          </ul>
+      </div>
+        
+        <div id="search">
+            <input type="search" id="search-input" list="suggestions" placeholder="Search node..." />
+            <datalist id="suggestions"></datalist>
+        </div>
+
+        <div id="connections-info"></div>
+    
+        <div id="sigma-container">
+            <div>
+                <div class="loader loading-element"></div>
+                <p class="loading-element"><strong>Carregando...</strong></p>
+            </div>
+        </div>
+
+
+    </body>
+    <script src= "{{ url_for('static',filename='index.js') }}"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</html>

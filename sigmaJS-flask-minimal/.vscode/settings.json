@@ -1,0 +1,5 @@
+{
+    "docker.commands.run": "$templates=\\\"\\\"; Get-ChildItem ${workspaceFolder}\\templates\\ | Foreach-Object {$templates += \\\" --reload-extra-file /app/templates/\\\"+$_.Name}; ${containerCommand} run --rm -e PORT=8080 -e APPLICATION_CREDENTIALS=/app/.local_env/679c3442914c.json -e EXTRA_RELOADS=$templates -p 8080:8080 -v ${workspaceFolder}:/app ${tag}",
+    "docker.commands.runInteractive": "${containerCommand} run --rm -it -e PORT=8080 -e APPLICATION_CREDENTIALS=/app/.local_env/679c3442914c.json -p 8080:8080 -v ${workspaceFolder}:/app ${tag}",
+    "docker.commands.build": "${containerCommand} build --pull --rm -f \"${dockerfile}\" -t ${tag} \"${context}\"",
+}
