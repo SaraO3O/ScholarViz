@@ -11,6 +11,7 @@ const response = fetch(STATIC_ROOT+'/graphs/RedeFiliacaoColoridoComunidades.json
     container.innerHTML = "";
 
     const renderer = new Sigma(graph, container);
+      
 
     // Redutores
     renderer.setSetting("nodeReducer", (node, data) => {
@@ -24,68 +25,43 @@ const response = fetch(STATIC_ROOT+'/graphs/RedeFiliacaoColoridoComunidades.json
       return data;
     });
 
-// Pesquisa interativa
-const searchInput = document.getElementById('search-input');
-const searchSuggestions = document.getElementById('suggestions');
 
-searchInput.addEventListener('input', () => {
-  const query = searchInput.value;
-  setSearchQuery(query);
-  showSearchSuggestions(query);
-});
+  const searchInput = document.getElementById('search-input');
+  const searchSuggestions = document.getElementById('suggestions');
 
-function setSearchQuery(query) {
-  renderer.setSetting("nodeReducer", (node, data) => {
-    const label = graph.getNodeAttribute(node, 'label');
-    if (label.toLowerCase().includes(query.toLowerCase())) {
-      data.hidden = false;
-    } else {
-      data.hidden = true;
-    }
-    return data;
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value;
+    setSearchQuery(query);
+    showSearchSuggestions(query);
   });
-  renderer.refresh();
-}
 
-function showSearchSuggestions(query) {
-  const lcQuery = query.toLowerCase();
-  const suggestions = graph
-    .nodes()
-    .map((n) => graph.getNodeAttribute(n, 'label'))
-    .filter((label) => label.toLowerCase().includes(lcQuery));
-
-  searchSuggestions.innerHTML = '';
-  suggestions.forEach((label) => {
-    const suggestionOption = document.createElement('option');
-    suggestionOption.value = label;
-    searchSuggestions.appendChild(suggestionOption);
-  });
-}
-
-
-    // Destaque de nós selecionados
-    let selectedNode = null;
-    renderer.on('enterNode', ({ node }) => {
-      if (selectedNode === null) {
-        // Primeira seleção de nó
-        selectedNode = node;
-        renderer.setSetting("nodeReducer", (node, data) => {
-          if (node === selectedNode) {
-            data.color = '#ff0000'; // Destaque em vermelho para o nó selecionado
-          }
-          return data;
-        });
-      } else if (selectedNode === node) {
-        // Deseleção do nó
-        selectedNode = null;
-        renderer.setSetting("nodeReducer", (node, data) => {
-          data.color = '#c9c9c9'; // Restaurar a cor padrão para todos os nós
-          return data;
-        });
+  function setSearchQuery(query) {
+    renderer.setSetting("nodeReducer", (node, data) => {
+      const label = graph.getNodeAttribute(node, 'label');
+      if (label.toLowerCase().includes(query.toLowerCase())) {
+        data.hidden = false;
+      } else {
+        data.hidden = true;
       }
-      renderer.refresh();
-      updateConnectionsInfo(selectedNode);
+      return data;
     });
+    renderer.refresh();
+  }
+
+  function showSearchSuggestions(query) {
+    const lcQuery = query.toLowerCase();
+    const suggestions = graph
+      .nodes()
+      .map((n) => graph.getNodeAttribute(n, 'label'))
+      .filter((label) => label.toLowerCase().includes(lcQuery));
+
+    searchSuggestions.innerHTML = '';
+    suggestions.forEach((label) => {
+      const suggestionOption = document.createElement('option');
+      suggestionOption.value = label;
+      searchSuggestions.appendChild(suggestionOption);
+    });
+  }
 
     // Exibição do vizinho do nó destacado
     let hoveredNode = null;
