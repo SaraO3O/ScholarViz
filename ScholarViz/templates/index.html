@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Homepage</title>
+        <title>ScholarViz</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static',filename='imgs/scholarvizFavicon.png') }}">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/index.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/graphology@0.25.1/dist/graphology.umd.min.js"></script>
@@ -12,22 +13,17 @@
     </head>
     <body>
 
-      <div class="container" id="little-menu">
-        <center><h1>Página Inicial</h1></center>
+    <div class="container" id="little-menu">
+      <center>
+        <h1>
+            <img src="{{ url_for('static',filename='imgs/scholarvizlogo.png') }}" alt="ScholarViz Logo">
+        </h1>
+    </center>
           <ul>
-            <li><a href="#0">Sobre</a></li>
             <li>
-              <a href="#0">Rede de Cooperação (Degree)</a>
+              <a id="redeCitacao">Rede de Citação (Degree)</a>
               <ul>
-                <li><a href="#0">Betweenness</a></li>
-                <li><a href="#0">Closeness</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#0">Rede de citação (Degree)</a>
-              <ul>
-                <li><a href="#0">Betweenness</a></li>
-                <li><a href="#0">Closeness</a></li>
+                <li><a id="redeCitacaoBetweenness">Betweenness</a></li>
               </ul>
             </li>
             <li>
@@ -38,7 +34,7 @@
               </ul>
             </li>
           </ul>
-      </div>
+      </div> 
         
         <div id="search">
             <input type="search" id="search-input" list="suggestions" placeholder="Search node..." />

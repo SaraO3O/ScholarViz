@@ -3,7 +3,19 @@ const connectionsInfo = document.getElementById('connections-info');
 const searchInput = document.getElementById("search-input");
 const searchSuggestions = document.getElementById("suggestions");
 
-const response = fetch(STATIC_ROOT+'/graphs/RedeFiliacaoColoridoComunidades.json').then(response => {
+// function loadRedeCitacaoGrafo(); {
+//   fetch(STATIC_ROOT+'/graphs/grafo1.json')
+//     .then(response => response.json())
+//     .then(serializedGraph => {
+//       // Lógica para desenhar o grafo com Sigma.js usando serializedGraph
+//       // Certifique-se de criar um novo gráfico e renderizá-lo aqui
+//     });
+// }
+
+// loadRedeCitacaoGrafo();
+
+
+const response = fetch(STATIC_ROOT+'/graphs/gCitacoes.json').then(response => {
   response.json().then(serializedGraph => {
     const graph = new graphology.Graph();
     console.log("Loading json into graph...")
@@ -112,4 +124,8 @@ const response = fetch(STATIC_ROOT+'/graphs/RedeFiliacaoColoridoComunidades.json
     }
 
   });
+});
+
+document.getElementById("redeCitacao").addEventListener("click", function () {
+  loadRedeCitacaoGrafo();
 });
