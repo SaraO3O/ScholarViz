@@ -14,27 +14,32 @@
     <body>
 
     <div class="container" id="little-menu">
-      <center>
         <h1>
             <img src="{{ url_for('static',filename='imgs/scholarvizlogo.png') }}" alt="ScholarViz Logo">
         </h1>
-    </center>
-          <ul>
-            <li>
-              <a id="redeCitacao">Rede de Citação (Degree)</a>
-              <ul>
-                <li><a id="redeCitacaoBetweenness">Betweenness</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#0">Rede de filiação (Degree)</a>
-              <ul>
-                <li><a href="#0">Betweenness</a></li>
-                <li><a href="#0">Closeness</a></li>
-              </ul>
-            </li>
-          </ul>
-      </div> 
+
+      <div class="button-group group-1">
+        <button id="redeCitacao">Rede de Citação</button>
+        <button id="redeCitacaoDegree">Degree</button>
+        <button id="redeCitacaoBetweenness">Betweenness</button>
+      </div>
+
+      <div class="button-group group-2">
+        <button id="redeFiliacao">Rede de Filiação</button>
+        <button id="redeFiliacaoDegree">Degree</button>
+        <button id="redeFiliacaoBetweenness">Betweenness</button>
+      </div>
+
+      <div class="button-group group-3">
+        <button id="redeCoautoria">Rede de Coautoria</button>
+        <button id="redeCoautoriaDegree">Degree</button>
+        <button id="redeCoautoriaBetweenness">Betweenness</button>
+      </div>
+
+      <div class="button-group group-4">
+        <button id="about">Sobre o ScholarViz</button>
+      </div>
+    </div> 
         
         <div id="search">
             <input type="search" id="search-input" list="suggestions" placeholder="Search node..." />

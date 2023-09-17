@@ -37,6 +37,60 @@ body {
 }
 
 #little-menu h1 img {
+  width: 100%;
+  height: auto;
+}
+
+#little-menu {
+  text-align: center;
+  padding: 20px;
+}
+
+.button-group {
+  margin-bottom: 20px; /* Espaço entre grupos de botões */
+}
+
+.button-group button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos para o primeiro grupo de botões */
+.button-group:nth-child(1) button {
+  background-color: #7F52F0;
+  color: #ffffff;
+}
+
+/* Estilos para o segundo grupo de botões */
+.button-group:nth-child(2) button {
+  background-color: #3498DB;
+  color: #ffffff;
+}
+
+/* Estilos para o terceiro grupo de botões */
+.button-group:nth-child(3) button {
+  background-color: #FA81C8;
+  color: #ffffff;
+}
+
+/* Estilos para o quarto grupo de botões */
+.button-group:nth-child(4) button {
+  background-color: #7F52F0;
+  color: #ffffff;
+}
+
+#little-menu button:hover {
+  background-color: #9ABCFF;
+}
+
+#little-menu h1 img {
     width: 100%;
     height: auto; 
 }
@@ -129,4 +183,3 @@ input[type="file"]::file-selector-button {
 #sigma-container > canvas {  
     animation: 1s ease-out 0s 1 fadeIn;
 }
-
