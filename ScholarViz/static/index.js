@@ -3,9 +3,20 @@ const connectionsInfo = document.getElementById('connections-info');
 const searchInput = document.getElementById("search-input");
 const searchSuggestions = document.getElementById("suggestions");
 let graph; 
+let renderer; 
 
 function loadRedeCitacaoGrafo() {
-  const graphPath = '/graphs/gCitacoes.json';
+  const graphPath = '/graphs/gCitacao.json';
+  loadAndRenderGraph(graphPath);
+}
+
+function loadRedeCitacaoDegree() {
+  const graphPath = '/graphs/gCitacaoDegree.json';
+  loadAndRenderGraph(graphPath);
+}
+
+function loadRedeCitacaoBetweenness() {
+  const graphPath = '/graphs/gCitacaoBetweenness.json';
   loadAndRenderGraph(graphPath);
 }
 
@@ -24,6 +35,21 @@ function loadRedeFiliacaoBetweenness() {
   loadAndRenderGraph(graphPath);
 }
 
+function loadRedeCoautoriaGrafo() {
+  const graphPath = '/graphs/gCoautoria.json';
+  loadAndRenderGraph(graphPath);
+}
+
+function loadRedeCoautoriaDegree() {
+  const graphPath = '/graphs/gCoautoriaDegree.json';
+  loadAndRenderGraph(graphPath);
+}
+
+function loadRedeCoautoriaBetweenness() {
+  const graphPath = '/graphs/gCoautoriaBetweenness.json';
+  loadAndRenderGraph(graphPath);
+}
+
 function loadAndRenderGraph(graphPath) {
   fetch(STATIC_ROOT + graphPath).then(response => response.json()).then(serializedGraph => {
     graph = new graphology.Graph();
@@ -31,7 +57,7 @@ function loadAndRenderGraph(graphPath) {
     graph.import(serializedGraph);
     container.innerHTML = "";
 
-    const renderer = new Sigma(graph, container);
+    renderer = new Sigma(graph, container);
       
     // Redutores
     renderer.setSetting("nodeReducer", (node, data) => {
@@ -79,7 +105,7 @@ function loadAndRenderGraph(graphPath) {
 }
 
 //Carregamento inicial
-loadRedeCitacaoGrafo();
+loadRedeFiliacaoGrafo();
 
 searchInput.addEventListener('input', () => {
   const query = searchInput.value;
@@ -133,6 +159,14 @@ document.getElementById("redeCitacao").addEventListener("click", function () {
   loadRedeCitacaoGrafo();
 });
 
+document.getElementById("redeCitacaoDegree").addEventListener("click", function () {
+  loadRedeCitacaoDegree();
+});
+
+document.getElementById("redeCitacaoBetweenness").addEventListener("click", function () {
+  loadRedeCitacaoBetweenness();
+});
+
 document.getElementById("redeFiliacao").addEventListener("click", function () {
   loadRedeFiliacaoGrafo();
 });
@@ -143,4 +177,16 @@ document.getElementById("redeFiliacaoBetweenness").addEventListener("click", fun
 
 document.getElementById("redeFiliacaoDegree").addEventListener("click", function () {
   loadRedeFiliacaoDegree();
+});
+
+document.getElementById("redeCoautoria").addEventListener("click", function () {
+  loadRedeCoautoriaGrafo();
+});
+
+document.getElementById("redeCoautoriaDegree").addEventListener("click", function () {
+  loadRedeCoautoriaDegree();
+});
+
+document.getElementById("redeCoautoriaBetweenness").addEventListener("click", function () {
+  loadRedeCoautoriaBetweenness();
 });
